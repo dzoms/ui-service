@@ -1,0 +1,51 @@
+@import url('/fonts/fonts.css');
+
+.entrance {
+  position: absolute;
+
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+
+  font-style: normal;
+  font-size: 13px;
+  font-family: 'progresspixel-bold';
+  text-align: start;
+
+  background-color: #d9d9d9;
+}
+
+.entrance > .left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80%;
+  width: 45%;
+}
+
+.entrance > .left > img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  margin-bottom: 40px;
+}
+
+.entrance > .left > span {
+  display: flex;
+  align-items: center;
+  font-size: 40px;
+  color: #4399ff;
+  text-align: left;
+  font-family: 'Typo pixel Regular';
+}
+
+.entrance > img {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 0;
+}

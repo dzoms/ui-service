@@ -1,0 +1,40 @@
+.create-call {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+
+  width: 30%;
+  height: 30%;
+  margin: 80px 20px 0 50px;
+
+  background-color: #f0f0f0;
+  border-radius: 20px;
+}
+
+.create-call > span {
+  margin: 30px 5px;
+
+  font-size: 17px;
+  color: #4399ff;
+}
+
+.create-call > button {
+  display: flex;
+  justify-content: center;
+
+  margin: 15px 5px;
+  height: 40px;
+  width: 60%;
+  background-color: #d9d9d9;
+  border: none;
+
+  color: #4399ff;
+  font-size: 15px;
+  font-family: 'progresspixel-bold';
+  border-radius: 13px;
+}
+
+.create-call > button:hover {
+  background-color: #cecdcd;
+}

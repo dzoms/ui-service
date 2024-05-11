@@ -1,0 +1,90 @@
+.entrance > .right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 80%;
+  width: 55%;
+}
+
+.entrance > .right > .block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  width: 60%;
+  height: 50%;
+
+  background-color: #f0f0f0;
+  border-radius: 20px;
+}
+
+.entrance > .right > .block > span {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  font-size: 30px;
+  color: #4399ff;
+  text-align: left;
+  font-family: 'progresspixel-bold';
+  margin: 20px 0;
+}
+
+.entrance input[type='text'] {
+  height: 20px;
+  width: 70%;
+  font-size: 14px;
+  color: white;
+  font-family: 'progresspixel-bold';
+  padding: 8px;
+  border: none;
+  border-radius: 13px;
+  background-color: #d9d9d9;
+  padding: 10px 20px;
+  margin: 10px 0;
+}
+.entrance input[type='text']::placeholder {
+  color: white;
+  font-family: 'progresspixel-bold';
+  font-size: 15px;
+}
+
+.entrance > .right > .block > button {
+  height: 40px;
+  width: 60%;
+  background-color: #d9d9d9;
+  margin: 30px 0 40px 0;
+  color: #4399ff;
+  font-size: 18px;
+  font-family: 'progresspixel-bold';
+  border-radius: 13px;
+  border: none;
+  display: flex;
+  justify-content: center;
+}
+
+.entrance > .right > .block > button:hover {
+  background-color: #cecdcd;
+}
+
+.entrance > .right > button {
+  display: flex;
+  justify-content: center;
+
+  margin: 15px 5px;
+  height: 50px;
+  width: 50%;
+  background-color: #f0f0f0;
+  border: none;
+
+  color: #4399ff;
+  font-size: 18px;
+  font-family: 'progresspixel-bold';
+  border-radius: 13px;
+  margin-top: 20px;
+}
+
+.entrance > .right > button:hover {
+  background-color: #ffffff;
+}

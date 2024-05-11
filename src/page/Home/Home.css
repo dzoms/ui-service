@@ -1,0 +1,45 @@
+.home {
+  position: absolute;
+
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: flex-start;
+  flex-direction: column;
+
+  font-style: normal;
+  font-size: 13px;
+  font-family: 'progresspixel-bold';
+  text-align: start;
+}
+
+.home > .blocks {
+  display: flex;
+  width: 100%;
+  height: 90%;
+  justify-content: space-between;
+  flex-direction: row;
+
+  font-style: normal;
+  font-size: 13px;
+  font-family: 'progresspixel-bold';
+  text-align: start;
+}
+
+.blocks > .calls {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: row;
+  width: 85%;
+  height: 90%;
+  margin: 0;
+}
+
+.blocks > img {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+}

@@ -1,0 +1,40 @@
+@import url('/fonts/fonts.css');
+
+.history-call {
+  display: flex;
+  width: 90%;
+  height: 60px;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+
+  font-style: normal;
+  font-size: 13px;
+  font-family: 'progresspixel-bold';
+  text-align: start;
+  margin-bottom: 8px;
+}
+
+.history-call > img {
+  height: 50px;
+  margin: 0 20px 0 0;
+}
+
+.history-call > span {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  color: #4399ff;
+  text-align: left;
+}
+
+.history-call > svg {
+  align-items: center;
+  color: #9c9c9c;
+  height: 20px;
+  margin: 0px 10px;
+}
+
+.history-call > svg:hover {
+  color: #bbbbbb;
+}
