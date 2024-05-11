@@ -42,6 +42,15 @@
   font-family: 'Typo pixel Regular';
 }
 
+.entrance > .right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 80%;
+  width: 55%;
+}
+
 .entrance > img {
   position: fixed;
   bottom: 0;

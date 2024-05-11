@@ -1,13 +1,13 @@
-.entrance > .right {
+.entry {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 80%;
-  width: 55%;
+  height: 100%;
+  width: 100%;
 }
 
-.entrance > .right > .block {
+.entry > .block {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,7 +20,7 @@
   border-radius: 20px;
 }
 
-.entrance > .right > .block > span {
+.entry > .block > span {
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -31,7 +31,7 @@
   margin: 20px 0;
 }
 
-.entrance input[type='text'] {
+.entry input[type='text'] {
   height: 20px;
   width: 70%;
   font-size: 14px;
@@ -44,13 +44,13 @@
   padding: 10px 20px;
   margin: 10px 0;
 }
-.entrance input[type='text']::placeholder {
+.entry input[type='text']::placeholder {
   color: white;
   font-family: 'progresspixel-bold';
   font-size: 15px;
 }
 
-.entrance > .right > .block > button {
+.entry > .block > button {
   height: 40px;
   width: 60%;
   background-color: #d9d9d9;
@@ -64,11 +64,11 @@
   justify-content: center;
 }
 
-.entrance > .right > .block > button:hover {
+.entry > .block > button:hover {
   background-color: #cecdcd;
 }
 
-.entrance > .right > button {
+.entry > button {
   display: flex;
   justify-content: center;
 
@@ -85,6 +85,6 @@
   margin-top: 20px;
 }
 
-.entrance > .right > button:hover {
+.entry > button:hover {
   background-color: #ffffff;
 }

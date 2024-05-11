@@ -1,28 +1,16 @@
-import React, { useState } from 'react'
-import Register from './../../components/Register/Register.jsx'
+import React from 'react'
 import './Entry.css'
 
-export default function Entry() {
-  const [showRegister, setShowRegister] = useState(false)
-
-  const entryClick = () => {
-    setShowRegister(true)
-  }
-
+export default function Entry({ toggleComponent }) {
   return (
-    <div className='right'>
-      {!showRegister && (
-        <div className='block'>
-          <span>вход</span>
-          <input type='text' placeholder='логин' />
-          <input type='text' placeholder='пароль' />
-          <button>войти</button>
-        </div>
-      )}
-
-      {!showRegister && <button onClick={entryClick}>создать аккаунт</button>}
-
-      {showRegister && <Register />}
+    <div className='entry'>
+      <div className='block'>
+        <span>вход</span>
+        <input type='text' placeholder='логин' />
+        <input type='text' placeholder='пароль' />
+        <button>войти</button>
+      </div>
+      <button onClick={toggleComponent}>создать аккаунт</button>
     </div>
   )
 }
