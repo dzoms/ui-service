@@ -1,12 +1,13 @@
 import { ReactKeycloakProvider } from '@react-keycloak/web'
 import Keycloak from 'keycloak-js'
-import React from 'react'
-import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import Home from './page/Home/Home'
+import Error from './page/Error/Error'
+import { userContactApi } from './components/misc/UserContactApi.jsx'
+import PrivateRoute from './components/misc/PrivateRoute.jsx'
+import Navbar from './components/misc/Navbar'
 import { Dimmer, Header, Icon } from 'semantic-ui-react'
 import { config } from './Constants'
-import Navbar from './components/misc/Navbar'
-import Error from './page/Error/Error'
-import Home from './page/Home/Home'
 
 function App() {
   const keycloak = new Keycloak({
@@ -19,14 +20,6 @@ function App() {
   const handleOnEvent = async (event, error) => {
     if (event === 'onAuthSuccess') {
       if (keycloak.authenticated) {
-        //let response = await moviesApi.getUserExtrasMe(keycloak.token)
-        // if (response.status === 404) {
-        //   const username = keycloak.tokenParsed.preferred_username
-        //   //const userExtra = { avatar: username }
-        //   //response = await moviesApi.saveUserExtrasMe(keycloak.token, userExtra)
-        //   console.log('UserExtra created for ' + username)
-        // }
-        //keycloak['avatar'] = response.data.avatar
       }
     }
   }
@@ -49,9 +42,9 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/home' element={<Home />} />
+          <Route path='/home' element={<PrivateRoute><Home /></PrivateRoute>} />
           <Route path='/error' element={<Error />} />
-          <Route path='*' element={<Navigate to='/' />} />
+          <Route path="*" element={<Navigate to="/error" />} />
         </Routes>
       </Router>
     </ReactKeycloakProvider>
