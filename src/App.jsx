@@ -3,10 +3,12 @@ import { ReactKeycloakProvider } from '@react-keycloak/web'
 import Keycloak from 'keycloak-js'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import Home from './page/Home/Home'
-import { moviesApi } from './components/misc/MoviesApi.jsx'
+import { userContactApi } from './components/misc/UserContactApi.jsx'
+import PrivateRoute from './components/misc/PrivateRoute.jsx'
 import Navbar from './components/misc/Navbar'
 import { Dimmer, Header, Icon } from 'semantic-ui-react'
 import { config } from './Constants'
+//import {} from './components/misc/UserContactApi.jsx'
 
 function App() {
   const keycloak = new Keycloak({
@@ -20,13 +22,11 @@ function App() {
     if (event === 'onAuthSuccess') {
       if (keycloak.authenticated) {
         //let response = await moviesApi.getUserExtrasMe(keycloak.token)
-        // if (response.status === 404) {
-        //   const username = keycloak.tokenParsed.preferred_username
-        //   //const userExtra = { avatar: username }
-        //   //response = await moviesApi.saveUserExtrasMe(keycloak.token, userExtra)
-        //   console.log('UserExtra created for ' + username)
-        // }
-        //keycloak['avatar'] = response.data.avatar
+
+        console.log(keycloak);
+        console.log(await userContactApi.getUserContact(keycloak.token, keycloak.subject));
+        console.log(await userContactApi.createUserContact(keycloak.token, "355e4b73-45b3-4047-b375-2357ed0478af"));
+        console.log(await userContactApi.getUserContact(keycloak.token, keycloak.subject));
       }
     }
   }
@@ -52,9 +52,8 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/home' element={<Home />} />
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route path='/home' element={<PrivateRoute><Home /></PrivateRoute>} />
+          <Route path="*" element={<Navigate to="/home" />} />
         </Routes>
       </Router>
     </ReactKeycloakProvider>
