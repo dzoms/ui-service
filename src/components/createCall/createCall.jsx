@@ -10,9 +10,9 @@ const CreateCall = () => {
 
   const handleCreateMeeting = async () => {
     const id = await createMeeting({ token: authToken });
+    console.log("id: ", id);
     setMeetingId(id);
     setIsMeetingCreated(true);
-    return id;
   };
 
   return (
@@ -21,10 +21,9 @@ const CreateCall = () => {
         <div className="create-call">
           <span>Создать звонок</span>
           <button onClick={handleCreateMeeting}>Создать</button>
-
         </div>
       ) : (
-        <SettingsMeeting onCreateMeeting={handleCreateMeeting} />
+        <SettingsMeeting meetingId={meetingId} />
       )}
     </>
   );

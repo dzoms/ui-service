@@ -1,6 +1,6 @@
 // components/JoinCall.jsx
 import React, { useState } from "react";
-import SettingsMeeting from "../../components/SettingsMeeting/SettingsMeeting";
+import SettingsMeeting from "../SettingsMeeting/SettingsMeeting";
 import "./joinCall.css";
 
 const JoinCall = () => {
@@ -8,8 +8,15 @@ const JoinCall = () => {
   const [isJoining, setIsJoining] = useState(false);
 
   const handleJoinMeeting = async () => {
-    setIsJoining(true);
     return meetingId;
+  };
+
+  const handleStartJoining = () => {
+    if (meetingId.trim()) {
+      setIsJoining(true);
+    } else {
+      alert("Пожалуйста, введите код доступа к звонку");
+    }
   };
 
   return (
@@ -23,10 +30,10 @@ const JoinCall = () => {
             onChange={(e) => setMeetingId(e.target.value)}
             placeholder="код доступа"
           />
-          <button onClick={() => setIsJoining(true)}>Присоединиться</button>
+          <button onClick={handleStartJoining}>Присоединиться</button>
         </div>
       ) : (
-        <SettingsMeeting onCreateMeeting={handleJoinMeeting} />
+        <SettingsMeeting meetingId={meetingId} />
       )}
     </>
   );
