@@ -26,11 +26,9 @@ const SettingsMeeting = ({ meetingId }) => {
         console.error("Ошибка доступа к камере и микрофону:", err);
       }
     };
-
     if (!cameraStream) {
       getMediaStream();
     }
-
     return () => {
       if (cameraStream) {
         cameraStream.getTracks().forEach((track) => track.stop());
@@ -66,6 +64,7 @@ const SettingsMeeting = ({ meetingId }) => {
         console.log("isCameraOn ", isCameraOn);
 
         navigate(`/call`, { state: { name, isMicOn, isCameraOn, meetingId } });
+
       } else {
         alert("Ошибка при присоединении к конференции. Попробуйте снова.");
       }
