@@ -1,3 +1,7 @@
+.join-call-container {
+  position: relative;
+}
+
 .join-call {
   display: flex;
   align-items: center;
@@ -10,15 +14,51 @@
   border-radius: 20px;
 }
 
-.join-call > span {
+/* Стили для модального окна и фона */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный фон */
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 00.2);
+  z-index: 1000; /* Сделать модальное окно поверх других элементов /
+  width: auto;
+  max-width: 90%; / Максимальная ширина модального окна */
+  }
+  
+  .close-modal {
+  padding: 5px 10px;
+  margin-top: 10px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  }
+  
+  .join-call > span {
   margin: 30px 10px;
   color: #4399ff;
   font-family: 'progresspixel-bold';
   font-size: 17px;
   text-align: center;
-}
-
-.join-call input[type='text'] {
+  }
+  
+  .join-call input[type='text'] {
   height: 20px;
   width: 70%;
   font-size: 14px;
@@ -29,14 +69,15 @@
   border-radius: 13px;
   background-color: #d9d9d9;
   padding: 10px 15px;
-}
-.join-call input[type='text']::placeholder {
+  }
+  
+  .join-call input[type='text']::placeholder {
   color: white;
   font-family: 'progresspixel-bold';
   font-size: 12px;
-}
-
-.join-call > button {
+  }
+  
+  .join-call > button {
   height: 40px;
   width: 60%;
   background-color: #d9d9d9;
@@ -48,8 +89,69 @@
   border: none;
   display: flex;
   justify-content: center;
-}
-
-.join-call > button:hover {
+  }
+  
+  .join-call > button:hover {
   background-color: #cecdcd;
-}
+  }
+
+  
+  
+  
+  .pre-meeting-setup h2 {
+  margin-bottom: 20px;
+  }
+  
+  .preview-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  }
+  
+  .preview-container video {
+  width: 300px;
+  height: 200px;
+  border-radius: 8px;
+  background-color: black;
+  margin-bottom: 10px;
+  }
+  
+  .camera-controls {
+  display: flex;
+  gap: 10px;
+  }
+  
+  .camera-controls button {
+  padding: 5px 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  }
+  
+  .camera-controls button:hover {
+  background-color: #0056b3;
+  }
+  
+  .pre-meeting-setup input[type="text"] {
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  width: 100%;
+  }
+  
+  .pre-meeting-setup button {
+  padding: 5px 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  }
+  
+  .pre-meeting-setup button:hover {
+  background-color: #0056b3;
+  }
