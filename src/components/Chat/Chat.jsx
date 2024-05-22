@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { usePubSub } from "@videosdk.live/react-sdk";
+import './Chat.css'; // Импортируйте стили
 
 function Chat() {
   const { publish, messages } = usePubSub("CHAT", {
@@ -25,14 +26,25 @@ function Chat() {
     }
   };
 
+  // Функция для форматирования времени
+  const formatTimestamp = (timestamp) => {
+    const date = new Date(timestamp);
+    return date.toLocaleTimeString();
+  };
+
   return (
     <div className="chat-container">
       <div className="messages">
         {messages.map((msg, index) => {
-          // Извлекаем текст сообщения для отображения
+          // Извлекаем текст сообщения и время отправки для отображения
           const messageText = typeof msg.message === 'object' ? msg.message.message : msg.message;
+          const timestamp = msg.timestamp ? formatTimestamp(msg.timestamp) : '';
+
           return (
-            <p key={index}><b>{msg.senderName}:</b> {messageText}</p>
+            <p key={index} className="message">
+              <b>{msg.senderName}:</b> {messageText}
+              <span className="timestamp">{timestamp}</span>
+            </p>
           );
         })}
       </div>
