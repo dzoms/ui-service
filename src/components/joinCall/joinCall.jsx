@@ -7,10 +7,6 @@ const JoinCall = () => {
   const [meetingId, setMeetingId] = useState("");
   const [isJoining, setIsJoining] = useState(false);
 
-  const handleJoinMeeting = async () => {
-    return meetingId;
-  };
-
   const handleStartJoining = () => {
     if (meetingId.trim()) {
       setIsJoining(true);
@@ -19,23 +15,32 @@ const JoinCall = () => {
     }
   };
 
+  const handleCloseModal = () => {
+    setIsJoining(false);
+  };
+
   return (
-    <>
-      {!isJoining ? (
-        <div className="join-call">
-          <span>Присоединиться к звонку</span>
-          <input
-            type="text"
-            value={meetingId}
-            onChange={(e) => setMeetingId(e.target.value)}
-            placeholder="код доступа"
-          />
-          <button onClick={handleStartJoining}>Присоединиться</button>
+    <div className="join-call-container">
+      <div className="join-call">
+        <span>Присоединиться к звонку</span>
+        <input
+          type="text"
+          value={meetingId}
+          onChange={(e) => setMeetingId(e.target.value)}
+          placeholder="код доступа"
+        />
+        <button onClick={handleStartJoining}>Присоединиться</button>
+      </div>
+
+      {isJoining && (
+        <div className="modal">
+          <div className="modal-content">
+            <SettingsMeeting meetingId={meetingId} />
+            <button className="close-modal" onClick={handleCloseModal}>Закрыть</button>
+          </div>
         </div>
-      ) : (
-        <SettingsMeeting meetingId={meetingId} />
       )}
-    </>
+    </div>
   );
 };
 

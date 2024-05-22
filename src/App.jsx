@@ -52,7 +52,7 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path='/' element={<PrivateRoute><Home /></PrivateRoute>} />
-          <Route path="/call" element={<CallPage />} />
+          <Route path="//call/:meetingId" element={<CallPage />} />
           <Route path='/error' element={<Error />} />
           <Route path="*" element={<Navigate to="/error" />} />
         </Routes>

@@ -63,7 +63,7 @@ const SettingsMeeting = ({ meetingId }) => {
         console.log("isMicOn ", isMicOn);
         console.log("isCameraOn ", isCameraOn);
 
-        navigate(`/call`, { state: { name, isMicOn, isCameraOn, meetingId } });
+        navigate(`/call/${meetingId}`, { state: { name, isMicOn, isCameraOn, meetingId } });
 
       } else {
         alert("Ошибка при присоединении к конференции. Попробуйте снова.");

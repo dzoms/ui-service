@@ -8,6 +8,7 @@ import { useLocation } from "react-router-dom";
 import ReactPlayer from "react-player";
 import "./CallPage.css";
 import { authToken, createMeeting } from "../../components/VideoCall/API";
+import Chat from "../../components/Chat/Chat"
 
 // Компонент для отображения участника
 const ParticipantView = ({ participantId }) => {
@@ -80,7 +81,6 @@ const Controls = () => {
   );
 };
 
-// Основной компонент страницы конференции
 const MeetingView = ({ meetingId, onMeetingLeave }) => {
   const [joined, setJoined] = useState(null);
   const { join } = useMeeting();
@@ -104,9 +104,14 @@ const MeetingView = ({ meetingId, onMeetingLeave }) => {
       {joined && joined === "JOINED" ? (
         <div>
           <Controls />
-          {[...participants.keys()].map((participantId) => (
-            <ParticipantView participantId={participantId} key={participantId} />
-          ))}
+          <div className="participants-and-chat">
+            <div className="participants">
+              {[...participants.keys()].map((participantId) => (
+                <ParticipantView participantId={participantId} key={participantId} />
+              ))}
+            </div>
+            <Chat />
+          </div>
         </div>
       ) : joined && joined === "JOINING" ? (
         <p>Joining the meeting...</p>
