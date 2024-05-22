@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./SettingsMeeting.css";
 
-const SettingsMeeting = ({ onCreateMeeting }) => {
+const SettingsMeeting = ({ meetingId }) => {
   const [name, setName] = useState("");
   const [isMicOn, setIsMicOn] = useState(true);
   const [isCameraOn, setIsCameraOn] = useState(true);
@@ -26,7 +26,10 @@ const SettingsMeeting = ({ onCreateMeeting }) => {
         console.error("Ошибка доступа к камере и микрофону:", err);
       }
     };
-    getMediaStream();
+
+    if (!cameraStream) {
+      getMediaStream();
+    }
 
     return () => {
       if (cameraStream) {
@@ -38,22 +41,31 @@ const SettingsMeeting = ({ onCreateMeeting }) => {
   const toggleMic = () => {
     setIsMicOn(!isMicOn);
     if (cameraStream) {
-      cameraStream.getAudioTracks()[0].enabled = !isMicOn;
+      const audioTracks = cameraStream.getAudioTracks();
+      if (audioTracks.length > 0) {
+        audioTracks[0].enabled = !isMicOn;
+      }
     }
   };
 
   const toggleCamera = () => {
     setIsCameraOn(!isCameraOn);
     if (cameraStream) {
-      cameraStream.getVideoTracks()[0].enabled = !isCameraOn;
+      const videoTracks = cameraStream.getVideoTracks();
+      if (videoTracks.length > 0) {
+        videoTracks[0].enabled = !isCameraOn;
+      }
     }
   };
 
-  const handleJoin = async () => {
+  const handleJoin = () => {
     if (name.trim()) {
-      const meetingId = await onCreateMeeting();
       if (meetingId) {
-        navigate(`/call/${meetingId}`, { state: { name, isMicOn, isCameraOn } });
+        console.log("name ", name);
+        console.log("isMicOn ", isMicOn);
+        console.log("isCameraOn ", isCameraOn);
+
+        navigate(`/call`, { state: { name, isMicOn, isCameraOn, meetingId } });
       } else {
         alert("Ошибка при присоединении к конференции. Попробуйте снова.");
       }
