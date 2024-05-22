@@ -4,15 +4,16 @@ import {
   useMeeting,
   useParticipant,
 } from "@videosdk.live/react-sdk";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ReactPlayer from "react-player";
 import "./CallPage.css";
 import { authToken, createMeeting } from "../../components/VideoCall/API";
-import Chat from "../../components/Chat/Chat"
+import Chat from "../../components/Chat/Chat";
 
 // Компонент для отображения участника
 const ParticipantView = ({ participantId }) => {
   const micRef = useRef(null);
+
   const { webcamStream, micStream, webcamOn, micOn, isLocal, displayName } =
     useParticipant(participantId);
 
@@ -125,6 +126,7 @@ const MeetingView = ({ meetingId, onMeetingLeave }) => {
 // Главный компонент страницы конференции
 const CallPage = () => {
   const location = useLocation();
+  const navigate = useNavigate(); // Используем useNavigate внутри компонента
   const { name, isMicOn, isCameraOn, meetingId: providedMeetingId } = location.state || {};
   const [meetingId, setMeetingId] = useState(providedMeetingId || null);
 
@@ -135,6 +137,7 @@ const CallPage = () => {
 
   const onMeetingLeave = () => {
     setMeetingId(null);
+    navigate('/');
   };
 
   useEffect(() => {
