@@ -1,6 +1,8 @@
 .create-call-container {
   position: relative;
-  z-index: 10; /* Установите z-index для основного контейнера меньше, чем для модального окна */
+  z-index: 10;
+  height: 100%;
+  width: 40%;
 }
 
 .create-call {
@@ -8,15 +10,14 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 35%;
-  height: 40%;
-  margin: 80px auto; /* Центрирование блока */
+  width: 65%;
+  height: 20%;
+  margin: 80px auto;
   background-color: #f0f0f0;
   border-radius: 20px;
-  padding: 20px; /* Добавлено немного padding для лучшего вида */
+  padding: 20px;
 }
 
-/* Стили для модального окна и фона */
 .modal {
   position: fixed;
   top: 0;
@@ -26,8 +27,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.6); /* Полупрозрачный черный фон */
-  z-index: 1050; /* Увеличенный z-index для модального окна */
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1050;
 }
 
 .modal-content {
@@ -39,7 +40,7 @@
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   width: auto;
-  max-width: 90%; /* Максимальная ширина модального окна */
+  max-width: 90%;
 }
 
 .close-modal {

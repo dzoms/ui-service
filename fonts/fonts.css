@@ -8,13 +8,6 @@
 }
 
 @font-face {
-  font-family: 'Post Pixel-7';
-  src: url('../fonts/post_pixel-7.eot'); /* IE 9 Compatibility Mode */
-  src: url('../fonts/post_pixel-7.eot?#iefix') format('embedded-opentype'), /* IE < 9 */ url('../fonts/post_pixel-7.woff2') format('woff2'),
-    /* Super Modern Browsers */ url('../fonts/post_pixel-7.woff') format('woff'), /* Firefox >= 3.6, any other modern browser */ url('../fonts/post_pixel-7.ttf') format('truetype'),
-    /* Safari, Android, iOS */ url('../fonts/post_pixel-7.svg#post_pixel-7') format('svg'); /* Chrome < 4, Legacy iOS */
-}
-@font-face {
   font-family: 'progresspixel-bold';
   src: url('../fonts/progresspixel-bold.eot'); /* IE 9 Compatibility Mode */
   src: url('../fonts/progresspixel-bold.eot?#iefix') format('embedded-opentype'), /* IE < 9 */ url('../fonts/progresspixel-bold.woff2') format('woff2'),

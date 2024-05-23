@@ -1,26 +1,25 @@
-// ParticipantsList.js
-import React from "react";
-import { useMeeting } from "@videosdk.live/react-sdk";
-import "./ParticipantsList.css"; // Импортируйте дополнительные стили
+import { useMeeting } from '@videosdk.live/react-sdk'
+import React from 'react'
+import './ParticipantsList.css'
 
 const ParticipantsList = () => {
-  const { participants } = useMeeting();
+  const { participants } = useMeeting()
 
   return (
-    <div className="participants-list">
-      <h3>Participants</h3>
+    <div className='participants-list'>
+      <h3>Участники</h3>
       <ul>
         {[...participants.keys()].map((participantId) => {
-          const participant = participants.get(participantId);
+          const participant = participants.get(participantId)
           return (
             <li key={participantId}>
-              {participant.displayName} {participant.isLocal ? "(You)" : ""}
+              {participant.displayName} {participant.isLocal ? '(You)' : ''}
             </li>
-          );
+          )
         })}
       </ul>
     </div>
-  );
-};
+  )
+}
 
-export default ParticipantsList;
+export default ParticipantsList
