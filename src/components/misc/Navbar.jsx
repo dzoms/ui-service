@@ -2,7 +2,6 @@ import React from 'react'
 import { useKeycloak } from '@react-keycloak/web'
 import { NavLink } from 'react-router-dom'
 import { Container, Dropdown, Menu } from 'semantic-ui-react'
-import { isAdmin } from './Helpers'
 import { useNavigate } from 'react-router-dom'
 
 function Navbar() {
@@ -26,9 +25,9 @@ function Navbar() {
     return keycloak.authenticated ? "Logout" : "Login"
   }
 
-  const getAdminMenuStyle = () => {
-    return keycloak.authenticated && isAdmin(keycloak) ? { "display": "block" } : { "display": "none" }
-  }
+  // const getAdminMenuStyle = () => {
+  //   return keycloak.authenticated && isAdmin(keycloak) ? { "display": "block" } : { "display": "none" }
+  // }
 
   return (
     // <Menu stackable>
