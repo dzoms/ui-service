@@ -56,7 +56,9 @@ const MeetingView = ({ meetingId, onMeetingLeave, isMicOnn, setIsMicOnn, isCamer
               <div className='modal-overlay'>
                 <p>Meeting ID: {meetingId}</p>
                 <button onClick={() => navigator.clipboard.writeText(meetingId)}>Copy Meeting ID</button>
-                <button onClick={toggleModal}>Close</button>
+                <button class='cancel-button' onClick={toggleModal}>
+                  Закрыть
+                </button>
               </div>
             </div>
           )}

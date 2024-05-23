@@ -1,3 +1,4 @@
+import { useKeycloak } from '@react-keycloak/web'
 import { MeetingProvider } from '@videosdk.live/react-sdk'
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
@@ -11,9 +12,11 @@ const CallPage = () => {
   const { meetingId } = useParams()
   console.log('id: ', meetingId)
 
+  const { keycloak } = useKeycloak()
+
   const [isMicOnn, setIsMicOnn] = useState(true)
   const [isCameraOnn, setIsCameraOnn] = useState(true)
-  const [namen, setNamen] = useState('Name')
+  const [namen, setNamen] = useState(keycloak.tokenParsed.preferred_username)
 
   const getOrCreateMeeting = async () => {
     if (!meetingId) {
