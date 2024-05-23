@@ -2,15 +2,16 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useMeeting } from "@videosdk.live/react-sdk";
 import Chat from "../Chat/Chat";
 import ParticipantView from "../ParticipantView/ParticipantView";
-import ParticipantsList from "../ParticipantsList/ParticipantsLists"; // Если не используется, можно убрать
+import ParticipantsList from "../ParticipantsList/ParticipantsLists";
 import Controls from "../Controls/Controls";
+import PreJoinControls from "../PreJoinControls/PreJoinControls";
 import "./MeetingView.css";
 
-const MeetingView = ({ meetingId, onMeetingLeave }) => {
-  const [joined, setJoined] = useState(null);
+const MeetingView = ({ meetingId, onMeetingLeave, isMicOnn, setIsMicOnn, isCameraOnn, setIsCameraOnn, namen, setNamen }) => {
+  const [joined, setJoined] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const { join, leave, toggleMic, toggleWebcam, participants } = useMeeting({
-    onMeetingJoined: () => setJoined("JOINED"),
+    onMeetingJoined: () => setJoined(true),
     onMeetingLeft: () => {
       onMeetingLeave();
     },
@@ -28,18 +29,22 @@ const MeetingView = ({ meetingId, onMeetingLeave }) => {
     [participants]
   );
 
-  const joinMeeting = () => {
+  const joinMeeting = (isMicOn, isCameraOn, name) => {
     setJoined("JOINING");
-    join();
+    join({
+      name: name,
+      micEnabled: isMicOn,
+      webcamEnabled: isCameraOn,
+    });
   };
 
   return (
     <div className="meeting-container">
       <h3>Meeting Id: {meetingId}</h3>
-      {joined && joined === "JOINED" ? (
+      {joined ? (
         <>
           <div className="meeting-content">
-            <ParticipantsList /> {/* Убедитесь, что этот компонент нужен, иначе уберите его */}
+            <ParticipantsList />
             <div className="participants-and-chat">
               <div className="participants-grid">
                 {participantsWithCamera.map((participantId) => (
@@ -76,10 +81,16 @@ const MeetingView = ({ meetingId, onMeetingLeave }) => {
             </div>
           )}
         </>
-      ) : joined && joined === "JOINING" ? (
-        <p>Joining the meeting...</p>
       ) : (
-        <button onClick={joinMeeting}>Join</button>
+        <PreJoinControls 
+          isMicOnn={isMicOnn}
+          setIsMicOnn={setIsMicOnn}
+          isCameraOnn={isCameraOnn}
+          setIsCameraOnn={setIsCameraOnn}
+          namen={namen}
+          setNamen={setNamen}
+          joinMeeting={joinMeeting}
+        />
       )}
     </div>
   );

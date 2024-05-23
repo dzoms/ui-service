@@ -11,7 +11,6 @@ import { config } from './Constants';
 
 
 import CallPage from "./page/VideoCallPage/CallPage";
-import SettingsMeeting from "./components/SettingsMeeting/SettingsMeeting";
 
 const App = () => {
   const keycloak = new Keycloak({

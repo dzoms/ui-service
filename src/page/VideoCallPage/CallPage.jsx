@@ -1,42 +1,58 @@
 import React, { useEffect, useState } from "react";
 import { MeetingProvider } from "@videosdk.live/react-sdk";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom"; // Added useParams here
 import MeetingView from "../../components/VideoCall/MeetingView/MeetingView";
-import SettingsMeeting from "../../components/SettingsMeeting/SettingsMeeting";
-import { authToken, createMeeting, validateMeeting } from "../../components/VideoCall/API";
+import PreJoinControls from "../../components/VideoCall/PreJoinControls/PreJoinControls";
+import { authToken, createMeeting } from "../../components/VideoCall/API";
 import "./CallPage.css";
 
 const CallPage = () => {
   const location = useLocation();
-  const navigate = useNavigate(); // Используем useNavigate внутри компонента
-  const { name, isMicOn, isCameraOn, meetingId: providedMeetingId } = location.state || {};
-  const [meetingId, setMeetingId] = useState(providedMeetingId || null);
+  const navigate = useNavigate();
+  const { meetingId } = useParams();
+  console.log("id: ", meetingId);
+
+  const [isMicOnn, setIsMicOnn] = useState(true);
+  const [isCameraOnn, setIsCameraOnn] = useState(true);
+  const [namen, setNamen] = useState("undef");
 
   const getOrCreateMeeting = async () => {
-    const id = meetingId || await createMeeting({ token: authToken });
-    setMeetingId(id);
+    if (!meetingId) {
+      const id = await createMeeting({ token: authToken });
+      navigate(`/call/${id}`);
+    }
   };
 
   const onMeetingLeave = () => {
-    setMeetingId(null);
     navigate('/');
   };
 
   useEffect(() => {
-    getOrCreateMeeting();
-  }, []);
+    if (!meetingId) {
+      getOrCreateMeeting();
+    }
+  }, [meetingId]);
 
   return authToken && meetingId ? (
     <MeetingProvider
       config={{
         meetingId,
-        micEnabled: isMicOn,
-        webcamEnabled: isCameraOn,
-        name: name || "No Name",
+        micEnabled: isMicOnn,
+        webcamEnabled: isCameraOnn,
+        name: namen || "No Name",
       }}
       token={authToken}
     >
-      <MeetingView meetingId={meetingId} onMeetingLeave={onMeetingLeave} />
+      <MeetingView
+        meetingId={meetingId}
+        onMeetingLeave={onMeetingLeave}
+        isMicOnn={isMicOnn}
+        setIsMicOnn={setIsMicOnn}
+        isCameraOnn={isCameraOnn}
+        setIsCameraOnn={setIsCameraOnn}
+        namen={namen}
+        setNamen={setNamen}
+      />
     </MeetingProvider>
   ) : (
     <p>Loading...</p>
