@@ -1,22 +1,18 @@
-// components/JoinCall.jsx
 import React, { useState } from "react";
-import SettingsMeeting from "../SettingsMeeting/SettingsMeeting";
+import { useNavigate } from "react-router-dom"; // Добавляем useNavigate
 import "./joinCall.css";
 
 const JoinCall = () => {
   const [meetingId, setMeetingId] = useState("");
-  const [isJoining, setIsJoining] = useState(false);
+  const navigate = useNavigate(); // Инициализируем useNavigate
 
-  const handleStartJoining = () => {
+  const handleJoinMeeting = () => {
     if (meetingId.trim()) {
-      setIsJoining(true);
+      // После ввода кода доступа, переадресовываем пользователя
+      navigate(`/call/${meetingId}`);
     } else {
       alert("Пожалуйста, введите код доступа к звонку");
     }
-  };
-
-  const handleCloseModal = () => {
-    setIsJoining(false);
   };
 
   return (
@@ -29,17 +25,8 @@ const JoinCall = () => {
           onChange={(e) => setMeetingId(e.target.value)}
           placeholder="код доступа"
         />
-        <button onClick={handleStartJoining}>Присоединиться</button>
+        <button onClick={handleJoinMeeting}>Присоединиться</button>
       </div>
-
-      {isJoining && (
-        <div className="modal">
-          <div className="modal-content">
-            <SettingsMeeting meetingId={meetingId} />
-            <button className="close-modal" onClick={handleCloseModal}>Закрыть</button>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

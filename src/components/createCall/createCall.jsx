@@ -1,22 +1,18 @@
-// components/CreateCall.jsx
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Добавляем useNavigate
 import { createMeeting, authToken } from "../VideoCall/API";
-import SettingsMeeting from "../SettingsMeeting/SettingsMeeting";
 import "./createCall.css";
 
 const CreateCall = () => {
   const [meetingId, setMeetingId] = useState(null);
-  const [isMeetingCreated, setIsMeetingCreated] = useState(false);
+  const navigate = useNavigate(); // Инициализируем useNavigate
 
   const handleCreateMeeting = async () => {
     const id = await createMeeting({ token: authToken });
     console.log("id: ", id);
     setMeetingId(id);
-    setIsMeetingCreated(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsMeetingCreated(false);
+    // После создания встречи, переадресовываем пользователя
+    navigate(`/call/${id}`);
   };
 
   return (
@@ -25,15 +21,6 @@ const CreateCall = () => {
         <span>Создать звонок</span>
         <button onClick={handleCreateMeeting}>Создать</button>
       </div>
-
-      {isMeetingCreated && (
-        <div className="modal">
-          <div className="modal-content">
-            <SettingsMeeting meetingId={meetingId} />
-            <button className="close-modal" onClick={handleCloseModal}>Закрыть</button>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
