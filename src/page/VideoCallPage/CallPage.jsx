@@ -32,6 +32,7 @@ const CallPage = () => {
     }
   }, [meetingId])
 
+
   return authToken && meetingId ? (
     <MeetingProvider
       config={{

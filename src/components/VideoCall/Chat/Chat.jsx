@@ -12,9 +12,11 @@ function Chat() {
 
   const [message, setMessage] = useState('')
 
+
   const handleSendMessage = () => {
     if (message.trim()) {
       // Отправляем сообщение как объект с ключом 'message'
+
       publish({ message: message.trim() }, { persist: true })
       setMessage('')
     }

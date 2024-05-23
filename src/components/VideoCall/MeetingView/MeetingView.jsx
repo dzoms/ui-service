@@ -25,6 +25,7 @@ const MeetingView = ({ meetingId, onMeetingLeave, isMicOnn, setIsMicOnn, isCamer
 
   const joinMeeting = (isMicOn, isCameraOn, name) => {
     setJoined('JOINING')
+
     join({
       name: name,
       micEnabled: isMicOn,
