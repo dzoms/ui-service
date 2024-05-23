@@ -1,37 +1,37 @@
-import React, { useEffect, useState } from "react";
-import { MeetingProvider } from "@videosdk.live/react-sdk";
-import { useLocation, useNavigate, useParams } from "react-router-dom"; // Added useParams here
-import MeetingView from "../../components/VideoCall/MeetingView/MeetingView";
-import PreJoinControls from "../../components/VideoCall/PreJoinControls/PreJoinControls";
-import { authToken, createMeeting } from "../../components/VideoCall/API";
-import "./CallPage.css";
+import { MeetingProvider } from '@videosdk.live/react-sdk'
+import React, { useEffect, useState } from 'react'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { authToken, createMeeting } from '../../components/VideoCall/API'
+import MeetingView from '../../components/VideoCall/MeetingView/MeetingView'
+import './CallPage.css'
 
 const CallPage = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const { meetingId } = useParams();
-  console.log("id: ", meetingId);
+  const location = useLocation()
+  const navigate = useNavigate()
+  const { meetingId } = useParams()
+  console.log('id: ', meetingId)
 
-  const [isMicOnn, setIsMicOnn] = useState(true);
-  const [isCameraOnn, setIsCameraOnn] = useState(true);
-  const [namen, setNamen] = useState("undef");
+  const [isMicOnn, setIsMicOnn] = useState(true)
+  const [isCameraOnn, setIsCameraOnn] = useState(true)
+  const [namen, setNamen] = useState('Name')
 
   const getOrCreateMeeting = async () => {
     if (!meetingId) {
-      const id = await createMeeting({ token: authToken });
-      navigate(`/call/${id}`);
+      const id = await createMeeting({ token: authToken })
+      navigate(`/call/${id}`)
     }
-  };
+  }
 
   const onMeetingLeave = () => {
-    navigate('/');
-  };
+    navigate('/')
+  }
 
   useEffect(() => {
     if (!meetingId) {
-      getOrCreateMeeting();
+      getOrCreateMeeting()
     }
-  }, [meetingId]);
+  }, [meetingId])
+
 
   return authToken && meetingId ? (
     <MeetingProvider
@@ -39,7 +39,7 @@ const CallPage = () => {
         meetingId,
         micEnabled: isMicOnn,
         webcamEnabled: isCameraOnn,
-        name: namen || "No Name",
+        name: namen || 'No Name',
       }}
       token={authToken}
     >
@@ -56,7 +56,7 @@ const CallPage = () => {
     </MeetingProvider>
   ) : (
     <p>Loading...</p>
-  );
-};
+  )
+}
 
-export default CallPage;
+export default CallPage
