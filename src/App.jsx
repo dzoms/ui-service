@@ -8,9 +8,10 @@ import PrivateRoute from './components/misc/PrivateRoute';
 import Navbar from './components/misc/Navbar';
 import { Dimmer, Header, Icon } from 'semantic-ui-react';
 import { config } from './Constants';
-
-
 import CallPage from "./page/VideoCallPage/CallPage";
+import { userSettingsApi } from "./components/SettingsUser/UserSettingsApi";
+import  SettingsUser from "./components/SettingsUser/SettingsUser";
+
 
 const App = () => {
   const keycloak = new Keycloak({
@@ -23,7 +24,28 @@ const App = () => {
   const handleOnEvent = async (event, error) => {
     if (event === 'onAuthSuccess') {
       if (keycloak.authenticated) {
-        // Дополнительная логика аутентификации
+        console.log(keycloak)
+        //console.log((await userContactApi.getUserContact(keycloak.token, keycloak.subject)).data)
+        console.log("aaaaaaaaaaa")
+        try {
+          const response = await userSettingsApi.getUserSettings(keycloak.token, keycloak.subject);
+          console.log(response)
+
+          if(response.data === "") {
+            const username = keycloak.tokenParsed.preferred_username;
+            const userExtra = { avatar: username, username: username };
+            
+            const createResponse = await userSettingsApi.createUserSettings(keycloak.token, userExtra);
+            
+            console.log(createResponse)
+            console.log('UserExtra created for ' + username);
+            keycloak['avatar'] = createResponse.data.avatar;
+          } else {
+            keycloak['avatar'] = response.data.avatar;
+          }
+        } catch (error) {
+          console.error("Error fetching or creating user settings:", error);
+        }
       }
     }
   };
@@ -52,7 +74,8 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path='/' element={<PrivateRoute><Home /></PrivateRoute>} />
-          <Route path="//call/:meetingId" element={<CallPage />} />
+          <Route path="//call/:meetingId" element={<PrivateRoute><CallPage /></PrivateRoute>} />
+          <Route path="/settings" element={<PrivateRoute><SettingsUser /></PrivateRoute>} />
           <Route path='/error' element={<Error />} />
           <Route path="*" element={<Navigate to="/error" />} />
         </Routes>

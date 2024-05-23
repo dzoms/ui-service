@@ -59,8 +59,8 @@ header > .right {
   display: flex;
   align-items: center;
 
-  height: 50px;
-  width: 50px;
+  height: 100px;
+  width: 100px;
   margin: 40px;
 
   background-color: #a9d1ff;

@@ -1,13 +1,13 @@
 import axios from 'axios'
 import { config } from '../../Constants'
 
-export const userContactApi = {
-  createUserContact,
-  getUserContact
+export const userSettingsApi = {
+  createUserSettings,
+  getUserSettings
 }
 
-function createUserContact(token, userId) {
-  return instance.post(`/api/v1/user-contact`, JSON.stringify(userId), {
+function createUserSettings(token, settingsTo) {
+  return instance.post(`/api/v1/user-settings`, settingsTo, {
     headers: {
       'Authorization': bearerAuth(token),
       'Content-Type': 'application/json'
@@ -15,8 +15,8 @@ function createUserContact(token, userId) {
   })
 }
 
-function getUserContact(token, userId) {
-  return instance.get(`/api/v1/user-contact/${userId}`, {
+function getUserSettings(token, id) {
+  return instance.get(`/api/v1/user-settings/${id}`, {
     headers: {
       'Authorization': bearerAuth(token),
       'Content-Type': 'application/json'
@@ -28,7 +28,7 @@ function getUserContact(token, userId) {
 // -- Axios
 
 const instance = axios.create({
-  baseURL: config.url.API_BASE_URL
+  baseURL: config.url.API_USER_SETTINGS_SERVICE
 })
 
 function bearerAuth(token) {
