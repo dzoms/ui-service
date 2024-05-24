@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ReactKeycloakProvider } from '@react-keycloak/web';
 import Keycloak from 'keycloak-js';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
@@ -24,21 +24,14 @@ const App = () => {
   const handleOnEvent = async (event, error) => {
     if (event === 'onAuthSuccess') {
       if (keycloak.authenticated) {
-        console.log(keycloak)
-        //console.log((await userContactApi.getUserContact(keycloak.token, keycloak.subject)).data)
-        console.log("aaaaaaaaaaa")
         try {
           const response = await userSettingsApi.getUserSettings(keycloak.token, keycloak.subject);
-          console.log(response)
 
           if(response.data === "") {
             const username = keycloak.tokenParsed.preferred_username;
             const userExtra = { avatar: username, username: username };
             
             const createResponse = await userSettingsApi.createUserSettings(keycloak.token, userExtra);
-            
-            console.log(createResponse)
-            console.log('UserExtra created for ' + username);
             keycloak['avatar'] = createResponse.data.avatar;
           } else {
             keycloak['avatar'] = response.data.avatar;
