@@ -11,9 +11,10 @@ const dev = {
   url: {
     KEYCLOAK_BASE_URL: "http://localhost:8080",
     API_BASE_URL: 'http://localhost:8083',
+    API_USER_SETTINGS_SERVICE: 'http://localhost:8084',
     OMDB_BASE_URL: 'https://www.omdbapi.com',
     AVATARS_DICEBEAR_URL: 'https://api.dicebear.com/6.x'
   }
 }
 
-export const config = process.env.NODE_ENV === 'development' ? dev : prod
+export const config = dev

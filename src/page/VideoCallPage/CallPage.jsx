@@ -12,11 +12,10 @@ const CallPage = () => {
   const { meetingId } = useParams()
   console.log('id: ', meetingId)
 
-  const { keycloak } = useKeycloak()
-
   const [isMicOnn, setIsMicOnn] = useState(true)
   const [isCameraOnn, setIsCameraOnn] = useState(true)
-  const [namen, setNamen] = useState(keycloak.tokenParsed.preferred_username)
+  const [namen, setNamen] = useState('Name')
+  const { keycloak } = useKeycloak()
 
   const getOrCreateMeeting = async () => {
     if (!meetingId) {
