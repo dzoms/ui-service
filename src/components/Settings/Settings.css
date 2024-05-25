@@ -7,9 +7,33 @@
   align-items: center;
   flex-direction: column;
 
-  width: 30%;
-  height: 37%;
+  width: 25%;
+  height: 17%;
 
   background-color: #d9d9d9;
   border-radius: 0 0 20px 20px;
+}
+
+.settings > span {
+  margin: 15px 0;
+  color: #4399ff;
+  font-size: 15px;
+  font-family: 'progresspixel-bold';
+}
+
+.settings > button {
+  height: 40px;
+  width: 60%;
+  background-color: #f0f0f0;
+  margin-top: 10px;
+  color: #4399ff;
+  font-size: 15px;
+  font-family: 'progresspixel-bold';
+  border-radius: 13px;
+  border: none;
+  cursor: pointer;
+}
+
+.settings > button:hover {
+  background-color: #cecdcd;
 }

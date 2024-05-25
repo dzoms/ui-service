@@ -1,0 +1,38 @@
+/* UserSettings.css */
+
+.user-settings-container {
+  margin-top: 50px;
+}
+
+.user-settings-segment {
+  width: 330px;
+}
+
+.user-avatar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  margin-bottom: 20px;
+}
+
+.user-avatar {
+  max-height: 100%;
+  max-width: 100%;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-settings-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.user-settings-buttons .ui.button {
+  margin-bottom: 10px;
+}
+
+.user-settings-buttons .ui.button:last-child {
+  margin-bottom: 0;
+}

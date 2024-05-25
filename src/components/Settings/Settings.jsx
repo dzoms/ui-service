@@ -1,8 +1,12 @@
+import { useKeycloak } from '@react-keycloak/web'
 import { useEffect, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './Settings.css'
 
 export default function Settings({ avatarRef, onClose }) {
   const ref = useRef()
+  const navigate = useNavigate()
+  const { keycloak } = useKeycloak()
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -16,16 +20,16 @@ export default function Settings({ avatarRef, onClose }) {
     }
   }, [onClose, avatarRef])
 
+  const goToSettingsUser = async () => {
+    navigate(`/settings`)
+  }
+
   return (
     <div className='settings' ref={ref}>
-      <span>Name</span>
-      <div class='active'>
-        <div class='not'></div>
-        <div class='online'></div>
-        <div class='talk'></div>
-      </div>
-      <div class='setting'></div>
-      <div class='exit'>выход</div>
+      <span>Привет, {keycloak.tokenParsed.preferred_username}</span>
+      <button class='setting' onClick={goToSettingsUser}>
+        Настройки
+      </button>
     </div>
   )
 }
