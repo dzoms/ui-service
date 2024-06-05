@@ -1,5 +1,5 @@
 export const authToken =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiJjM2IwMmIyZC0zNzYyLTQ2Y2MtYmE3MS00ZTA2YjlkNTAxNWIiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTcxNjU2NzM5OSwiZXhwIjoxNzE2NjUzNzk5fQ.GuePlCZDDwgFoLv9lbAA1nt1g0OyFfgixDZTQPKas2w'
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiJjYmNkZWY1MS1iZTQyLTRhNmEtYjcwYy0yNDRhZjhlNzg0YmYiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTcxNzU3OTk2OSwiZXhwIjoxNzE3NjY2MzY5fQ.Ra5SrTp2JKbhAmakYgMI7PmLnKKY6vSCupehai_PFWY'
 
 // API call to create meeting
 export const createMeeting = async ({ token }) => {

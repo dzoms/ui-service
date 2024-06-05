@@ -20,7 +20,6 @@ export default function Notification({ bellRef, onClose }) {
   return (
     <div className='notification' ref={ref}>
       <NotificationCall />
-      <NotificationCall />
     </div>
   )
 }
