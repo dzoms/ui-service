@@ -1,22 +1,32 @@
+<<<<<<< HEAD
+=======
+import { faShare } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+>>>>>>> 6a43db5ac4abff2c3e93161954d8615bb3bfbbd7
 import { usePubSub } from '@videosdk.live/react-sdk'
 import React, { useState } from 'react'
-import './Chat.css' // Импортируйте стили
+import './Chat.css'
 
 function Chat() {
   const { publish, messages } = usePubSub('CHAT', {
     onMessageReceived: (message) => {
-      // Логирование для отладки структуры получаемых сообщений
       console.log('Received message:', message)
     },
   })
 
   const [message, setMessage] = useState('')
+<<<<<<< HEAD
 
 
   const handleSendMessage = () => {
     if (message.trim()) {
       // Отправляем сообщение как объект с ключом 'message'
 
+=======
+
+  const handleSendMessage = () => {
+    if (message.trim()) {
+>>>>>>> 6a43db5ac4abff2c3e93161954d8615bb3bfbbd7
       publish({ message: message.trim() }, { persist: true })
       setMessage('')
     }
@@ -48,8 +58,10 @@ function Chat() {
         })}
       </div>
       <div className='input-area'>
-        <input value={message} onChange={(e) => setMessage(e.target.value)} onKeyPress={handleKeyPress} placeholder='Type a message...' />
-        <button onClick={handleSendMessage}>Отправить</button>
+        <input value={message} onChange={(e) => setMessage(e.target.value)} onKeyPress={handleKeyPress} placeholder='Введите сообщение...' />
+        <button onClick={handleSendMessage}>
+          <FontAwesomeIcon icon={faShare} />
+        </button>
       </div>
     </div>
   )

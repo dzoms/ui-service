@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+import { useKeycloak } from '@react-keycloak/web'
+>>>>>>> 6a43db5ac4abff2c3e93161954d8615bb3bfbbd7
 import { MeetingProvider } from '@videosdk.live/react-sdk'
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
@@ -14,6 +18,7 @@ const CallPage = () => {
   const [isMicOnn, setIsMicOnn] = useState(true)
   const [isCameraOnn, setIsCameraOnn] = useState(true)
   const [namen, setNamen] = useState('Name')
+  const { keycloak } = useKeycloak()
 
   const getOrCreateMeeting = async () => {
     if (!meetingId) {
@@ -31,7 +36,10 @@ const CallPage = () => {
       getOrCreateMeeting()
     }
   }, [meetingId])
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6a43db5ac4abff2c3e93161954d8615bb3bfbbd7
 
   return authToken && meetingId ? (
     <MeetingProvider

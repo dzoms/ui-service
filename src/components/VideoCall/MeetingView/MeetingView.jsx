@@ -25,7 +25,10 @@ const MeetingView = ({ meetingId, onMeetingLeave, isMicOnn, setIsMicOnn, isCamer
 
   const joinMeeting = (isMicOn, isCameraOn, name) => {
     setJoined('JOINING')
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6a43db5ac4abff2c3e93161954d8615bb3bfbbd7
     join({
       name: name,
       micEnabled: isMicOn,
@@ -57,7 +60,13 @@ const MeetingView = ({ meetingId, onMeetingLeave, isMicOnn, setIsMicOnn, isCamer
               <div className='modal-overlay'>
                 <p>Meeting ID: {meetingId}</p>
                 <button onClick={() => navigator.clipboard.writeText(meetingId)}>Copy Meeting ID</button>
+<<<<<<< HEAD
                 <button onClick={toggleModal}>Close</button>
+=======
+                <button class='cancel-button' onClick={toggleModal}>
+                  Закрыть
+                </button>
+>>>>>>> 6a43db5ac4abff2c3e93161954d8615bb3bfbbd7
               </div>
             </div>
           )}
