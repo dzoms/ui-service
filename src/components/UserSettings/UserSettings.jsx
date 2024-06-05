@@ -1,8 +1,9 @@
 import { useKeycloak } from '@react-keycloak/web'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Button, Container, Divider, Form, Grid, Segment } from 'semantic-ui-react'
+import { Button, Container, Form, Grid, Segment } from 'semantic-ui-react'
 import { getAvatarUrl, handleLogError } from '../misc/Helpers'
+import './UserSettings.css' // Ensure this is the path to your CSS file
 import { userSettingsApi } from './UserSettingsApi'
 
 function UserSettings() {
@@ -51,28 +52,28 @@ function UserSettings() {
     }
   }
 
-  const avatarImage = !avatar ? <></> : <img src={getAvatarUrl(avatar)} onLoad={() => setImageLoading(false)} alt='user-avatar' />
+  const avatarImage = !avatar ? <></> : <img src={getAvatarUrl(avatar)} onLoad={() => setImageLoading(false)} alt='user-avatar' className='user-settings-avatar-img' />
 
   return (
-    <Container>
+    <Container className='user-settings-container'>
       <Grid centered>
         <Grid.Row>
-          <Segment style={{ width: '330px' }}>
-            <Form>
-              <strong>Avatar</strong>
-              <div style={{ height: 300 }}>{avatarImage}</div>
-              <Divider />
-              <Button fluid onClick={handleSuffle} color='blue' disabled={imageLoading}>
-                Shuffle
+          <Segment className='user-settings-segment'>
+            <Form className='user-settings-form'>
+              <h1>Смена аватара</h1>
+              <div className='user-settings-avatar'>{avatarImage}</div>
+              <Button className='user-settings-button' onClick={handleSuffle} color='blue' disabled={imageLoading}>
+                Изменить
               </Button>
-              <Divider />
-              <Button.Group fluid>
-                <Button onClick={handleCancel}>Cancel</Button>
-                <Button.Or />
-                <Button disabled={originalAvatar === avatar} onClick={handleSave} positive>
-                  Save
+              <div className='user-settings-button-group'>
+                <Button className='button cancel' onClick={handleCancel}>
+                  Отменить
                 </Button>
-              </Button.Group>
+                <Button.Or />
+                <Button className='button positive' disabled={originalAvatar === avatar} onClick={handleSave}>
+                  Сохранить
+                </Button>
+              </div>
             </Form>
           </Segment>
         </Grid.Row>
