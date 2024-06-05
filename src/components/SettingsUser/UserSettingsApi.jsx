@@ -3,7 +3,8 @@ import { config } from '../../Constants'
 
 export const userSettingsApi = {
   createUserSettings,
-  getUserSettings
+  getUserSettings,
+  getAll,
 }
 
 function createUserSettings(token, settingsTo) {
@@ -17,6 +18,15 @@ function createUserSettings(token, settingsTo) {
 
 function getUserSettings(token, id) {
   return instance.get(`/api/v1/user-settings/${id}`, {
+    headers: {
+      'Authorization': bearerAuth(token),
+      'Content-Type': 'application/json'
+    }
+  })
+}
+
+function getAll(token) {
+  return instance.get(`/api/v1/user-settings`, {
     headers: {
       'Authorization': bearerAuth(token),
       'Content-Type': 'application/json'
