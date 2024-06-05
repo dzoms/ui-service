@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import {userSettingsApi} from './UserSettingsApi'
-import { handleLogError } from '../misc/Helpers'
-import { Container, Form, Segment, Button, Divider, Grid } from 'semantic-ui-react'
-import { getAvatarUrl } from '../misc/Helpers'
-import { useNavigate } from 'react-router-dom'
 import { useKeycloak } from '@react-keycloak/web'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { Button, Container, Divider, Form, Grid, Segment } from 'semantic-ui-react'
+import { getAvatarUrl, handleLogError } from '../misc/Helpers'
+import { userSettingsApi } from './UserSettingsApi'
 
 function UserSettings() {
   const [username, setUsername] = useState('')
@@ -37,31 +36,22 @@ function UserSettings() {
   }
 
   const handleCancel = () => {
-    navigate("/")
+    navigate('/')
   }
 
   const handleSave = async () => {
     try {
-      let username = keycloak.tokenParsed.preferred_username;
+      let username = keycloak.tokenParsed.preferred_username
       const userExtra = { avatar, username }
       await userSettingsApi.createUserSettings(keycloak.token, userExtra)
       keycloak['avatar'] = avatar
-      navigate("/")
+      navigate('/')
     } catch (error) {
       handleLogError(error)
     }
   }
 
-  const avatarImage = !avatar ? <></> :
-    <img
-      src={getAvatarUrl(avatar)}
-      onLoad={() => setImageLoading(false)}
-      alt='user-avatar'
-    />
-
-  const handleLogout = () => {
-    keycloak.logout();
-  };
+  const avatarImage = !avatar ? <></> : <img src={getAvatarUrl(avatar)} onLoad={() => setImageLoading(false)} alt='user-avatar' />
 
   return (
     <Container>
@@ -70,20 +60,18 @@ function UserSettings() {
           <Segment style={{ width: '330px' }}>
             <Form>
               <strong>Avatar</strong>
-              <div style={{ height: 300 }}>
-                {avatarImage}
-              </div>
+              <div style={{ height: 300 }}>{avatarImage}</div>
               <Divider />
-              <Button fluid onClick={handleSuffle} color='blue' disabled={imageLoading}>Shuffle</Button>
+              <Button fluid onClick={handleSuffle} color='blue' disabled={imageLoading}>
+                Shuffle
+              </Button>
               <Divider />
               <Button.Group fluid>
                 <Button onClick={handleCancel}>Cancel</Button>
                 <Button.Or />
-                <Button disabled={originalAvatar === avatar} onClick={handleSave} positive>Save</Button>
-                <Button fluid color='red' onClick={handleLogout}>
-                  Logout
+                <Button disabled={originalAvatar === avatar} onClick={handleSave} positive>
+                  Save
                 </Button>
-              
               </Button.Group>
             </Form>
           </Segment>

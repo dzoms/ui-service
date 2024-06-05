@@ -6,7 +6,7 @@ import Notification from './../../components/Notification/Notification'
 import Settings from './../../components/Settings/Settings'
 
 import { useKeycloak } from '@react-keycloak/web'
-import { userSettingsApi } from '../SettingsUser/UserSettingsApi'
+import { userSettingsApi } from '../UserSettings/UserSettingsApi'
 import { getAvatarUrl } from '../misc/Helpers'
 import './Header.css'
 import logo from '/image/logo.png'
