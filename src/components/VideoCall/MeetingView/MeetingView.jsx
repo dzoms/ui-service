@@ -7,7 +7,7 @@ import Controls from '../Controls/Controls'
 import ParticipantView from '../ParticipantView/ParticipantView'
 import ParticipantsList from '../ParticipantsList/ParticipantsLists'
 import PreJoinControls from '../PreJoinControls/PreJoinControls'
-import { userSettingsApi } from './../../SettingsUser/UserSettingsApi'
+import { userSettingsApi } from './../../UserSettings/UserSettingsApi'
 import './MeetingView.css'
 
 const MeetingView = ({ meetingId, onMeetingLeave, isMicOnn, setIsMicOnn, isCameraOnn, setIsCameraOnn, namen, setNamen }) => {

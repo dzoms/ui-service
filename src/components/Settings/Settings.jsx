@@ -20,15 +20,36 @@ export default function Settings({ avatarRef, onClose }) {
     }
   }, [onClose, avatarRef])
 
-  const goToSettingsUser = async () => {
+  const goToUserSettings = async () => {
     navigate(`/settings`)
+  }
+
+  const handleLogout = () => {
+    keycloak.logout()
   }
 
   return (
     <div className='settings' ref={ref}>
       <span>Привет, {keycloak.tokenParsed.preferred_username}</span>
-      <button class='setting' onClick={goToSettingsUser}>
-        Настройки
+      <div className='active'>
+        <div className='status not'>
+          <div className='circle'></div>
+          <span>не в сети</span>
+        </div>
+        <div className='status online'>
+          <div className='circle'></div>
+          <span>онлайн</span>
+        </div>
+        <div className='status talk'>
+          <div className='circle'></div>
+          <span>разговариваю</span>
+        </div>
+      </div>
+      <button className='setting' onClick={goToUserSettings}>
+        настройки
+      </button>
+      <button className='exit' onClick={handleLogout}>
+        выход
       </button>
     </div>
   )

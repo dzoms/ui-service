@@ -28,20 +28,11 @@ function getUserSettings(token, id) {
 function getAll(token) {
   return instance.get(`/api/v1/user-settings`, {
     headers: {
-<<<<<<< HEAD
-      'Authorization': bearerAuth(token),
-      'Content-Type': 'application/json'
-    }
-  })
-}
-
-=======
       Authorization: bearerAuth(token),
       'Content-Type': 'application/json',
     },
   })
 }
->>>>>>> de283d60571a6b677fcd47032426a49a6b80b784
 
 // -- Axios
 

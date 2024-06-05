@@ -1,9 +1,9 @@
 import { useKeycloak } from '@react-keycloak/web'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Button, Container, Divider, Form, Grid, Segment } from 'semantic-ui-react'
+import { Button, Container, Form, Grid, Segment } from 'semantic-ui-react'
 import { getAvatarUrl, handleLogError } from '../misc/Helpers'
-import './Settingsuser.css'
+import './UserSettings.css'
 import { userSettingsApi } from './UserSettingsApi'
 
 function UserSettings() {
@@ -54,30 +54,24 @@ function UserSettings() {
 
   const avatarImage = !avatar ? <></> : <img src={getAvatarUrl(avatar)} onLoad={() => setImageLoading(false)} alt='user-avatar' className='user-avatar' />
 
-  const handleLogout = () => {
-    keycloak.logout()
-  }
-
   return (
     <Container className='user-settings-container'>
       <Grid centered>
         <Grid.Row>
           <Segment className='user-settings-segment'>
-            <Form>
-              <strong>Avatar</strong>
-              <div className='user-avatar-container'>{avatarImage}</div>
-              <Divider />
-              <Button fluid onClick={handleSuffle} color='blue' disabled={imageLoading}>
-                Shuffle
+            <Form className='user-settings-form'>
+              <h1>Смена аватара</h1>
+              <div className='user-settings-avatar'>{avatarImage}</div>
+              <Button className='user-settings-button' onClick={handleSuffle} color='blue' disabled={imageLoading}>
+                Изменить
               </Button>
-              <Divider />
-              <div className='user-settings-buttons'>
-                <Button onClick={handleCancel}>Cancel</Button>
-                <Button disabled={originalAvatar === avatar} onClick={handleSave} positive>
-                  Save
+              <div className='user-settings-button-group'>
+                <Button className='button cancel' onClick={handleCancel}>
+                  Отменить
                 </Button>
-                <Button fluid color='red' onClick={handleLogout}>
-                  Logout
+                <Button.Or />
+                <Button className='button positive' disabled={originalAvatar === avatar} onClick={handleSave}>
+                  Сохранить
                 </Button>
               </div>
             </Form>
