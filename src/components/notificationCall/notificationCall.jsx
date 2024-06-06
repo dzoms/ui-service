@@ -20,10 +20,15 @@ export default function NotificationCall() {
     const fetchNotifications = async () => {
       try {
         const response = await notificationApi.getNotifications(keycloak.token)
-        setNotifications(response.data)
+        const cleanedNotifications = response.data.map((notification) => ({
+          ...notification,
+          roomId: notification.roomId.replace(/^"|"$/g, ''), // Удаляем кавычки в начале и конце
+        }))
+        setNotifications(cleanedNotifications)
+        console.log(cleanedNotifications)
         setLoading(false)
 
-        const userIds = Array.from(new Set(response.data.map((n) => n.senderId)))
+        const userIds = Array.from(new Set(cleanedNotifications.map((n) => n.senderId)))
         userIds.forEach(async (userId) => {
           try {
             const userResponse = await userSettingsApi.getUserSettings(keycloak.token, userId)
@@ -76,7 +81,7 @@ export default function NotificationCall() {
                   <FontAwesomeIcon icon={faCalendar} />
                   <span>{new Date(notification.time).toLocaleDateString('ru-RU')}</span>
                 </div>
-                <button className='join-call-button' onClick={() => joinMeeting(notification.meetingId)}>
+                <button className='join-call-button' onClick={() => joinMeeting(notification.roomId)}>
                   Присоединиться
                 </button>
               </div>
