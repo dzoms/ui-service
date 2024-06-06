@@ -4,7 +4,6 @@ import { config } from '../../Constants'
 export const notificationApi = {
   createNotification,
   getNotifications,
-  getUsers,
 }
 
 function createNotification(token, userId, roomId) {
@@ -18,15 +17,6 @@ function createNotification(token, userId, roomId) {
 
 function getNotifications(token) {
   return instance.get(`/api/v1/notification-service`, {
-    headers: {
-      Authorization: bearerAuth(token),
-      'Content-Type': 'application/json',
-    },
-  })
-}
-
-function getUsers(token) {
-  return instance.get(`/api/v1/user-service`, {
     headers: {
       Authorization: bearerAuth(token),
       'Content-Type': 'application/json',

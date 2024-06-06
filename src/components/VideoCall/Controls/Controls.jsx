@@ -19,10 +19,10 @@ const Controls = ({ leave, toggleMic, toggleWebcam, onShowMeetingInfo }) => {
 
   return (
     <div className='controls'>
-      <button onClick={() => leave()}>Leave</button>
+      <button onClick={() => leave()}>Выйти</button>
       <button onClick={handleToggleMic}>{isMicOn ? <FontAwesomeIcon icon={faMicrophone} /> : <FontAwesomeIcon icon={faMicrophoneSlash} />}</button>
       <button onClick={handleToggleWebcam}>{isWebcamOn ? <FontAwesomeIcon icon={faVideo} /> : <FontAwesomeIcon icon={faVideoSlash} />}</button>
-      <button onClick={onShowMeetingInfo}>Meeting Info</button>
+      <button onClick={onShowMeetingInfo}>Пригласить</button>
     </div>
   )
 }

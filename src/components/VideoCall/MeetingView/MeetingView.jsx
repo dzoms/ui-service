@@ -28,7 +28,9 @@ const MeetingView = ({ meetingId, onMeetingLeave, isMicOnn, setIsMicOnn, isCamer
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await notificationApi.getUsers(keycloak.token)
+        console.log('fff')
+        const response = await userSettingsApi.getAll(keycloak.token)
+        console.log(response)
         setUsers(response.data)
       } catch (error) {
         console.error('Ошибка при получении пользователей:', error)
@@ -54,7 +56,8 @@ const MeetingView = ({ meetingId, onMeetingLeave, isMicOnn, setIsMicOnn, isCamer
   const handleSendNotification = async () => {
     if (selectedUser) {
       try {
-        const response = await userSettingsApi.sendNotification(keycloak.token, selectedUser, `Meeting ID: ${meetingId}`)
+        console.log(selectedUser)
+        const response = await notificationApi.createNotification(keycloak.token, selectedUser, meetingId)
         console.log('Notification sent:', response.data)
       } catch (error) {
         console.error('Error sending notification:', error)
@@ -85,13 +88,10 @@ const MeetingView = ({ meetingId, onMeetingLeave, isMicOnn, setIsMicOnn, isCamer
               <div className='modal-overlay'>
                 <p>Meeting ID: {meetingId}</p>
                 <button onClick={() => navigator.clipboard.writeText(meetingId)}>Copy Meeting ID</button>
-                <input type='text' placeholder='Enter username' value={searchText} onChange={(e) => setSearchText(e.target.value)} />
                 <div style={{ maxHeight: '150px', overflowY: 'auto', marginTop: '10px' }}>
-                  {users
-                    .filter((user) => user.username.toLowerCase().includes(searchText.toLowerCase()))
-                    .map((user) => (
-                      <div key={user.id}>{user.username}</div>
-                    ))}
+                  {users.map((user) => (
+                    <div key={user.id}>{user.username}</div>
+                  ))}
                 </div>
 
                 <Button onClick={handleSendNotification}>Send Notification</Button>
