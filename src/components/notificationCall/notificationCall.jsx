@@ -2,6 +2,7 @@ import { faCalendar, faClock } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useKeycloak } from '@react-keycloak/web'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom' // Import useNavigate for navigation
 import { userSettingsApi } from '../UserSettings/UserSettingsApi'
 import { getAvatarUrl } from '../misc/Helpers'
 import { notificationApi } from './NotificationServiceApi'
@@ -13,6 +14,7 @@ export default function NotificationCall() {
   const [loading, setLoading] = useState(true)
   const [userDetails, setUserDetails] = useState({})
   const { keycloak } = useKeycloak()
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchNotifications = async () => {
@@ -21,7 +23,6 @@ export default function NotificationCall() {
         setNotifications(response.data)
         setLoading(false)
 
-        // Загрузка деталей пользователей для каждого уведомления
         const userIds = Array.from(new Set(response.data.map((n) => n.senderId)))
         userIds.forEach(async (userId) => {
           try {
@@ -46,6 +47,10 @@ export default function NotificationCall() {
 
   if (loading) return <div>Loading...</div>
 
+  const joinMeeting = (meetingId) => {
+    navigate(`/call/${meetingId}`)
+  }
+
   return (
     <div className='notification-call-container'>
       {notifications.length > 0 ? (
@@ -57,20 +62,23 @@ export default function NotificationCall() {
           return (
             <div key={index} className='notification-call'>
               <div className='avatar'>
-                <img src={avatarUrl} alt='Avatar' onLoad={() => setImageLoading(false)} />
+                <img src={avatarUrl} alt='Avatar' />
               </div>
               <div className='info-call'>
                 <div className='invitation'>
-                  <span>{userName}</span> приглашает вас на собрание
+                  <span>{userName} приглашает вас на собрание </span>
                 </div>
                 <div className='time'>
                   <FontAwesomeIcon icon={faClock} />
                   <span>{new Date(notification.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                 </div>
-                <div className='date'>
+                <div className='data'>
                   <FontAwesomeIcon icon={faCalendar} />
                   <span>{new Date(notification.time).toLocaleDateString('ru-RU')}</span>
                 </div>
+                <button className='join-call-button' onClick={() => joinMeeting(notification.meetingId)}>
+                  Присоединиться
+                </button>
               </div>
             </div>
           )

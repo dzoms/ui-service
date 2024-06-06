@@ -28,9 +28,7 @@ const MeetingView = ({ meetingId, onMeetingLeave, isMicOnn, setIsMicOnn, isCamer
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        console.log('fff')
         const response = await userSettingsApi.getAll(keycloak.token)
-        console.log(response)
         setUsers(response.data)
       } catch (error) {
         console.error('Ошибка при получении пользователей:', error)
@@ -56,15 +54,19 @@ const MeetingView = ({ meetingId, onMeetingLeave, isMicOnn, setIsMicOnn, isCamer
   const handleSendNotification = async () => {
     if (selectedUser) {
       try {
-        console.log(selectedUser)
         const response = await notificationApi.createNotification(keycloak.token, selectedUser, meetingId)
         console.log('Notification sent:', response.data)
+        console.log(meetingId)
       } catch (error) {
         console.error('Error sending notification:', error)
       }
     } else {
       alert('Please select a user to send the notification.')
     }
+  }
+
+  const handleUserClick = (user) => {
+    setSelectedUser(user.id)
   }
 
   return (
@@ -90,7 +92,9 @@ const MeetingView = ({ meetingId, onMeetingLeave, isMicOnn, setIsMicOnn, isCamer
                 <button onClick={() => navigator.clipboard.writeText(meetingId)}>Copy Meeting ID</button>
                 <div style={{ maxHeight: '150px', overflowY: 'auto', marginTop: '10px' }}>
                   {users.map((user) => (
-                    <div key={user.id}>{user.username}</div>
+                    <div key={user.id} className={`user-item ${selectedUser === user.id ? 'selected-user' : ''}`} onClick={() => handleUserClick(user)}>
+                      {user.username}
+                    </div>
                   ))}
                 </div>
 
