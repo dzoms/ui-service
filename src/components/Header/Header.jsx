@@ -9,7 +9,7 @@ import { useKeycloak } from '@react-keycloak/web'
 import { userSettingsApi } from '../UserSettings/UserSettingsApi'
 import { getAvatarUrl } from '../misc/Helpers'
 import './Header.css'
-import logo from '/image/logo.png'
+import logo from '/image/text_logo.png'
 
 export default function Header() {
   const [showNotification, setShowNotification] = useState(false)
@@ -61,7 +61,6 @@ export default function Header() {
     <header>
       <div className='left'>
         <img src={logo} alt='Logo' />
-        <div className='name-logo'>Dzoms</div>
       </div>
       <div className='right'>
         <FontAwesomeIcon icon={faBell} onClick={toggleNotification} ref={bellRef} />

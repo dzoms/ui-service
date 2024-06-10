@@ -1,7 +1,7 @@
 import { faCamera, faPhone } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './historyCall.css'
-import avatar from '/image/logo.png'
+import avatar from '/image/avatarka.png'
 
 export default function historyCall() {
   return (

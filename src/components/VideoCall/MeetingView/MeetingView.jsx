@@ -1,7 +1,6 @@
 import { useKeycloak } from '@react-keycloak/web'
 import { useMeeting } from '@videosdk.live/react-sdk'
 import React, { useEffect, useState } from 'react'
-import { Button } from 'semantic-ui-react'
 import { notificationApi } from '../../notificationCall/NotificationServiceApi'
 import Chat from '../Chat/Chat'
 import Controls from '../Controls/Controls'
@@ -88,8 +87,6 @@ const MeetingView = ({ meetingId, onMeetingLeave, isMicOnn, setIsMicOnn, isCamer
           {showModal && (
             <div className='overlay-meeting'>
               <div className='modal-overlay'>
-                <p>Meeting ID: {meetingId}</p>
-                <button onClick={() => navigator.clipboard.writeText(meetingId)}>Copy Meeting ID</button>
                 <div style={{ maxHeight: '150px', overflowY: 'auto', marginTop: '10px' }}>
                   {users.map((user) => (
                     <div key={user.id} className={`user-item ${selectedUser === user.id ? 'selected-user' : ''}`} onClick={() => handleUserClick(user)}>
@@ -98,7 +95,9 @@ const MeetingView = ({ meetingId, onMeetingLeave, isMicOnn, setIsMicOnn, isCamer
                   ))}
                 </div>
 
-                <Button onClick={handleSendNotification}>Send Notification</Button>
+                <button class='send-notification' onClick={handleSendNotification}>
+                  Пригласить
+                </button>
                 <button className='cancel-button' onClick={toggleModal}>
                   Закрыть
                 </button>

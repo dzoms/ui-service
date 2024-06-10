@@ -90,6 +90,12 @@
   border-radius: 15px;
   cursor: pointer;
   font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.pre-join-container > .controls > .down > button:active {
+  transform: scale(0.95);
 }
 
 .pre-join-container > .controls > .down > button:hover {
@@ -115,6 +121,12 @@
   cursor: pointer;
   font-size: 14px;
   transition: background-color 0.3s, opacity 0.3s;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.pre-join-container > .action-buttons > button:active {
+  transform: scale(0.95);
 }
 
 .pre-join-container > .action-buttons > .start-button {

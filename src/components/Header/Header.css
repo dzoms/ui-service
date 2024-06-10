@@ -27,15 +27,6 @@ header > .left {
   width: 50%;
 }
 
-header > .left > .name-logo {
-  display: flex;
-  align-items: center;
-  font-size: 25px;
-  color: #4399ff;
-  text-align: left;
-  font-family: 'Typo pixel Regular';
-}
-
 header > .left > img {
   height: 70px;
   margin: 0 30px;
@@ -53,6 +44,7 @@ header > .right {
   color: #9c9c9c;
   height: 30px;
   margin: 0px 10px;
+  cursor: pointer;
 }
 
 .right > .user-photo {
@@ -68,6 +60,7 @@ header > .right {
   border: 3px #4399ff solid;
   border-radius: 50%;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .right > .user-photo > img {

@@ -61,8 +61,13 @@
   font-family: 'progresspixel-bold';
   border-radius: 13px;
   border: none;
-  cursor: pointer;
   margin-bottom: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.user-settings-button:active {
+  transform: scale(0.95);
 }
 
 .user-settings-button:hover {
@@ -86,6 +91,11 @@
   border-radius: 13px;
   border: none;
   cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.user-settings-button-group .button:active {
+  transform: scale(0.95);
 }
 
 .user-settings-button-group .button.positive {

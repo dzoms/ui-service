@@ -72,8 +72,14 @@
   border-radius: 13px;
   border: none;
   cursor: pointer;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
 .create-call > button:hover {
   background-color: #cecdcd;
+}
+
+.create-call > button:active {
+  transform: scale(0.95);
 }

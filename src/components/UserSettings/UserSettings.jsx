@@ -1,7 +1,7 @@
 import { useKeycloak } from '@react-keycloak/web'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Button, Container, Form, Grid, Segment } from 'semantic-ui-react'
+import { Container, Form, Grid, Segment } from 'semantic-ui-react'
 import { getAvatarUrl, handleLogError } from '../misc/Helpers'
 import './UserSettings.css'
 import { userSettingsApi } from './UserSettingsApi'
@@ -62,17 +62,16 @@ function UserSettings() {
             <Form className='user-settings-form'>
               <h1>Смена аватара</h1>
               <div className='user-settings-avatar'>{avatarImage}</div>
-              <Button className='user-settings-button' onClick={handleSuffle} color='blue' disabled={imageLoading}>
+              <button className='user-settings-button' onClick={handleSuffle} color='blue' disabled={imageLoading}>
                 Изменить
-              </Button>
+              </button>
               <div className='user-settings-button-group'>
-                <Button className='button cancel' onClick={handleCancel}>
+                <button className='button cancel' onClick={handleCancel}>
                   Отменить
-                </Button>
-                <Button.Or />
-                <Button className='button positive' disabled={originalAvatar === avatar} onClick={handleSave}>
+                </button>
+                <button className='button positive' disabled={originalAvatar === avatar} onClick={handleSave}>
                   Сохранить
-                </Button>
+                </button>
               </div>
             </Form>
           </Segment>

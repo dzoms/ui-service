@@ -98,10 +98,16 @@
   border-radius: 13px;
   border: none;
   align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
 .modal-overlay > .cancel-button:hover {
   background-color: #d6aeae;
+}
+
+.modal-overlay > .cancel-button:active {
+  transform: scale(0.95);
 }
 
 .dropdown-container {
@@ -110,20 +116,43 @@
 }
 
 .user-item {
+  font-family: 'progresspixel-bold';
+  font-size: 12px;
   padding: 8px;
   cursor: pointer;
   border-radius: 4px;
   transition: background-color 0.3s, color 0.3s;
   margin: 5px;
-  border: 1px solid #ddd;
   background-color: #f0f0f0;
 }
 
 .user-item:hover {
-  background-color: #e7e7e7;
+  background-color: #d9d9d9;
 }
 
 .selected-user {
-  background-color: #007bff;
-  color: white;
+  color: #4399ff;
+}
+
+.modal-overlay > .send-notification {
+  height: 30px;
+  width: 60%;
+  background-color: #d9d9d9;
+  margin: 5px;
+  color: #4399ff;
+  font-size: 13px;
+  font-family: 'progresspixel-bold';
+  border-radius: 13px;
+  border: none;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.modal-overlay > .send-notification:hover {
+  background-color: #cecdcd;
+}
+
+.modal-overlay > .send-notification:active {
+  transform: scale(0.95);
 }

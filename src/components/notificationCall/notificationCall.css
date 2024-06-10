@@ -63,6 +63,12 @@
   border-radius: 13px;
   border: none;
   cursor: pointer;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.notification-call > .info-call > button:active {
+  transform: scale(0.95);
 }
 
 .notification-call > .info-call > button:hover {

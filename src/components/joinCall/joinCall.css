@@ -10,7 +10,7 @@
   justify-content: flex-start;
   flex-direction: column;
   width: 70%;
-  height: 45%;
+  height: 40%;
   margin: 80px 50px 0 20px;
   background-color: #f0f0f0;
   border-radius: 20px;
@@ -80,7 +80,7 @@
   height: 40px;
   width: 60%;
   background-color: #d9d9d9;
-  margin: 17px;
+  margin: 28px 0;
   color: #4399ff;
   font-size: 15px;
   font-family: 'progresspixel-bold';
@@ -88,10 +88,16 @@
   border: none;
   display: flex;
   justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
 .join-call > button:hover {
   background-color: #cecdcd;
+}
+
+.join-call > button:active {
+  transform: scale(0.95);
 }
 
 .pre-meeting-setup h2 {
